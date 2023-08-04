@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Todo : Language-->
+    <string name="clap_to_find_your_phone">Tepuk tangan untuk menemukan telepon Anda</string>
+    <string name="find">Menemukan</string>
+    <string name="setting">Pengaturan</string>
+    <string name="tap_to_active">Ketuk untuk aktif</string>
+    <string name="sound_sensitivity">Sensitivitas suara</string>
+</resources>

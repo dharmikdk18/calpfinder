@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Todo : Language-->
+    <string name="clap_to_find_your_phone">আপনার ফোন খুঁজে পেতে হাততালি</string>
+    <string name="find">অনুসন্ধান</string>
+    <string name="setting">বিন্যাস</string>
+    <string name="tap_to_active">সক্রিয় করতে আলতো চাপুন</string>
+    <string name="sound_sensitivity">শব্দ সংবেদনশীলতা</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Todo : Language-->
+    <string name="clap_to_find_your_phone">당신의 전화를 찾기 위해 박수</string>
+    <string name="find">찾다</string>
+    <string name="setting">환경</string>
+    <string name="tap_to_active">탭하여 활성화</string>
+    <string name="sound_sensitivity">소리 감도</string>
+</resources>

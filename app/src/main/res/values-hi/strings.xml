@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Todo : Language-->
+    <string name="clap_to_find_your_phone">अपना फ़ोन ढूंढने के लिए ताली बजाएं</string>
+    <string name="find">पाना</string>
+    <string name="setting">सेटिंग</string>
+    <string name="tap_to_active">सक्रिय करने के लिए टैप करें</string>
+    <string name="sound_sensitivity">ध्वनि संवेदनशीलता</string>
+</resources>

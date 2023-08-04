@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Todo : Language-->
+    <string name="clap_to_find_your_phone">拍手して携帯電話を見つけてください</string>
+    <string name="find">探す</string>
+    <string name="setting">設定</string>
+    <string name="tap_to_active">タップしてアクティブにします</string>
+    <string name="sound_sensitivity">音の感度</string>
+</resources>

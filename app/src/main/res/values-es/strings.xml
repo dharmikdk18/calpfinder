@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Todo : Language-->
+    <string name="clap_to_find_your_phone">Aplaude para encontrar tu teléfono</string>
+    <string name="find">Encontrar</string>
+    <string name="setting">Configuración</string>
+    <string name="tap_to_active">Toca para activar</string>
+    <string name="sound_sensitivity">Sensibilidad al sonido</string>
+</resources>

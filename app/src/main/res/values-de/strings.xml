@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Todo : Language-->
+    <string name="clap_to_find_your_phone">Klicken Sie, um Ihr Telefon zu finden</string>
+    <string name="find">Finden</string>
+    <string name="setting">Einstellung</string>
+    <string name="tap_to_active">Zum Aktivieren tippen</string>
+    <string name="sound_sensitivity">Schallempfindlichkeit</string>
+</resources>
