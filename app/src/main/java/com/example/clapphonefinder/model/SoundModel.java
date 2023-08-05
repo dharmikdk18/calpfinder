@@ -1,6 +1,11 @@
 package com.example.clapphonefinder.model;
 
-public class SoundModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class SoundModel implements Parcelable {
 
     private String name;
     private int sound;
@@ -14,6 +19,24 @@ public class SoundModel {
 
     public SoundModel() {
     }
+
+    protected SoundModel(Parcel in) {
+        name = in.readString();
+        sound = in.readInt();
+        image = in.readInt();
+    }
+
+    public static final Creator<SoundModel> CREATOR = new Creator<SoundModel>() {
+        @Override
+        public SoundModel createFromParcel(Parcel in) {
+            return new SoundModel(in);
+        }
+
+        @Override
+        public SoundModel[] newArray(int size) {
+            return new SoundModel[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -37,5 +60,17 @@ public class SoundModel {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeInt(sound);
+        parcel.writeInt(image);
     }
 }

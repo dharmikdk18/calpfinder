@@ -33,16 +33,16 @@
                     android:src="@drawable/ic_flash"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.SwitchCompat
+                <Switch
                     android:id="@+id/switch_flash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:thumb="@drawable/thumb_layerlist"
+                    android:track="@drawable/track_backgrounds"
                     app:layout_constraintBottom_toBottomOf="@+id/imv_flash"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imv_flash"
-                    app:thumbTint="@color/white"
-                    app:trackTint="@drawable/switch_track_selector" />
+                    app:layout_constraintTop_toTopOf="@+id/imv_flash"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -51,6 +51,8 @@
                     android:text="@string/flashlight"
                     android:textColor="@color/black"
                     android:textSize="16dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     app:layout_constraintBottom_toBottomOf="@+id/imv_flash"
                     app:layout_constraintStart_toEndOf="@+id/imv_flash"
                     app:layout_constraintTop_toTopOf="@+id/imv_flash" />
@@ -69,6 +71,8 @@
                         android:layout_gravity="start"
                         android:buttonTint="@color/color_orange"
                         android:layoutDirection="rtl"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
                         android:text="@string/tv_default"
                         android:textAlignment="textStart"
                         android:textColor="@color/color_gray" />
@@ -78,6 +82,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
                         android:layout_marginTop="5dp"
                         android:buttonTint="@color/color_orange"
                         android:layoutDirection="rtl"
@@ -90,6 +96,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
                         android:layout_marginTop="5dp"
                         android:buttonTint="@color/color_orange"
                         android:layoutDirection="rtl"
@@ -114,15 +122,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                <Switch
                     android:id="@+id/switch_vibrate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:thumb="@drawable/thumb_layerlist"
+                    android:track="@drawable/track_backgrounds"
                     app:layout_constraintBottom_toBottomOf="@+id/imv_vibrate"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imv_vibrate"
-                    app:thumbTint="@color/white"
-                    app:trackTint="@drawable/switch_track_selector" />
+                    app:layout_constraintTop_toTopOf="@+id/imv_vibrate"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,32 +139,20 @@
                     android:layout_marginStart="15dp"
                     android:text="@string/vibrate"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imv_vibrate"
                     app:layout_constraintStart_toEndOf="@+id/imv_vibrate"
                     app:layout_constraintTop_toTopOf="@+id/imv_vibrate" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_ads"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_white_corner_gray"
-                android:padding="5dp">
-
-                <!-- <com.gianghv.libads.NativeAdSmallView
-                     android:id="@+id/nativeAdMediumView"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     app:layout_constraintTop_toTopOf="parent" />-->
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:fontFamily="@font/bevietnampro_regular"
+                android:fontFamily="@font/poppins_semibold"
+                android:includeFontPadding="false"
                 android:text="@string/more"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
@@ -186,9 +183,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:fontFamily="@font/bevietnampro_regular"
                     android:text="@string/language"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imv_language"
@@ -230,10 +228,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:fontFamily="@font/bevietnampro_regular"
                     android:text="@string/rate_us"
                     android:textColor="@color/black"
                     android:textSize="16dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imv_rate"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -274,10 +273,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:fontFamily="@font/bevietnampro_regular"
                     android:text="@string/feedback"
                     android:textColor="@color/black"
                     android:textSize="16dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imv_feedback"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -318,10 +318,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:fontFamily="@font/bevietnampro_regular"
                     android:text="@string/privacy_policy"
                     android:textColor="@color/black"
                     android:textSize="16dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imv_privacy"
                     app:layout_constraintTop_toTopOf="parent" />

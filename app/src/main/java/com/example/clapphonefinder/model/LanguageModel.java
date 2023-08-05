@@ -1,4 +1,4 @@
-package com.example.clapphonefinder.adapter;
+package com.example.clapphonefinder.model;
 
 public class LanguageModel {
 

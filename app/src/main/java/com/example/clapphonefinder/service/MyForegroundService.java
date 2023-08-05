@@ -23,25 +23,26 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.clapphonefinder.R;
+import com.example.clapphonefinder.activity.ApplySoundActivity;
 import com.example.clapphonefinder.activity.MainActivity;
+import com.example.clapphonefinder.utils.PreferenceManager;
 import com.example.clapphonefinder.utils.Recorder;
 
 public class MyForegroundService extends Service implements DetectorThread.OnClapListener {
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "MyForegroundServiceChannel";
-    LocalBroadcastManager localBroadcastManager;
+//    LocalBroadcastManager localBroadcastManager;
     private DetectorThread detectorThread;
     private Recorder recorder;
     private static final String TAG = "DetectClap";
     private ScreenLockReceiver screenLockReceiver;
 
-
-    @Override
+  /*  @Override
     public void onCreate() {
         super.onCreate();
         this.localBroadcastManager = LocalBroadcastManager.getInstance(this);
 
-    }
+    }*/
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -74,6 +75,7 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
 
         // Start the service as a foreground service
         startForeground(NOTIFICATION_ID, notification);
+
     }
 
     private void stopForegroundService() {
@@ -86,7 +88,7 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
     public void onDestroy() {
         Intent intent1 = new Intent("clap");
         intent1.putExtra("start", false);
-        localBroadcastManager.sendBroadcast(intent1);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
         unregisterReceiver(clapReceiver);
 //        unregisterReceiver(screenLockReceiver);
         super.onDestroy();
@@ -137,16 +139,6 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
         this.detectorThread = new DetectorThread(this.recorder);
         this.detectorThread.setOnClapListener(this);
         this.detectorThread.start();
-
-        // No need to call startForeground() here, it should be called in onStartCommand()
-
-        // Initialize and register the ScreenLockReceiver
-//        if (screenLockReceiver == null) {
-//            screenLockReceiver = new ScreenLockReceiver();
-//            IntentFilter intentFilter = new IntentFilter();
-//            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
-//            registerReceiver(screenLockReceiver, intentFilter);
-//        }
     }
 
     private void stopClapDetection() {
@@ -169,6 +161,7 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
         // Stop the foreground service
         stopForeground(true);
         stopSelf();
+
     }
 
     private BroadcastReceiver clapReceiver = new BroadcastReceiver() {
@@ -184,17 +177,22 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
     private MediaPlayer mediaPlayer;
     @Override
     public void onClap() {
-
-//        Toast.makeText(this, "Clap", Toast.LENGTH_SHORT).show();
-//        showPopupDialog();
-//        Intent intent = new Intent("clapDetected");
-//        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-        mediaPlayer = MediaPlayer.create(this, R.raw.clap_sound);
-        if (mediaPlayer != null) {
-            mediaPlayer.start();
-        }
+//        mediaPlayer = MediaPlayer.create(this, R.raw.clap_sound);
+//        if (mediaPlayer != null) {
+//            mediaPlayer.start();
+//        }
         Log.d(TAG, "onClap: ");
+
         stopClapDetection();
+
+        Intent serviceIntent = new Intent(this, PlaySoundService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            serviceIntent.putExtra("action", "play");
+            serviceIntent.putExtra("sound", PreferenceManager.getSound());
+            startForegroundService(serviceIntent);
+        } else {
+            startService(serviceIntent);
+        }
     }
 
     private class ScreenLockReceiver extends BroadcastReceiver {
@@ -242,8 +240,6 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
             }
             notificationManagerCompat.notify(1, builder.build());
         } else {
-            // If the device is running on a lower API, you can't show a popup dialog directly.
-            // Instead, you can show a notification with a pending intent to launch an activity when clicked.
         }
     }
 }

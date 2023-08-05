@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_splash"
-    android:layoutDirection="ltr"
     tools:context=".activity.SplashActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_splash"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/load"

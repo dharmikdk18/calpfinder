@@ -1,15 +1,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.ClapPhoneFinder" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.ClapPhoneFinder" parent="Base.Theme.ClapPhoneFinder" />
+
 
     <style name="titleToolbarTextAppearance">
         <item name="fontFamily">@font/poppins_semibold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
+
+    <style name="My_Widget.MaterialComponents.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <!-- Chip background color selector -->
+        <item name="chipBackgroundColor">@color/chip_color_selector</item>
+        <!-- Border color -->
+        <item name="chipStrokeColor">@color/black</item>
+
+        <!-- Chip text color selector -->
+        <item name="android:textColor">@color/chip_text_color_selector</item>
+        <!-- Chip close icon color selector -->
+        <item name="closeIconTint">@color/mtrl_chip_close_icon_tint</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
 </resources>

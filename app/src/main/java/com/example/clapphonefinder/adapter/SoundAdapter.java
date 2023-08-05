@@ -1,6 +1,8 @@
 package com.example.clapphonefinder.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.clapphonefinder.activity.ApplySoundActivity;
 import com.example.clapphonefinder.databinding.SoundItemBinding;
 import com.example.clapphonefinder.model.SoundModel;
 
@@ -18,6 +21,7 @@ public class SoundAdapter extends RecyclerView.Adapter<SoundAdapter.ViewHolder> 
 
     private Context context;
     private List<SoundModel> soundList;
+
 
     public SoundAdapter(Context context, List<SoundModel> soundList) {
         this.context = context;
@@ -36,6 +40,14 @@ public class SoundAdapter extends RecyclerView.Adapter<SoundAdapter.ViewHolder> 
         SoundModel soundModel = soundList.get(position);
         holder.binding.ivSoundImage.setImageResource(soundModel.getImage());
         holder.binding.tvSoundName.setText(soundModel.getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ApplySoundActivity.class);
+                intent.putExtra("sound", soundModel);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

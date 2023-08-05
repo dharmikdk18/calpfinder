@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@drawable/sound_item_bg"
+    android:background="@drawable/unselected_sound_item_bg"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -25,6 +25,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="Whistle"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/poppins_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -41,4 +41,10 @@
     <string name="sound_sensitivity">Sound sensitivity</string>
     <string name="whistle">Whistle</string>
     <string name="sound">Sound</string>
+    <string name="info">Info</string>
+    <string name="two_fragment_open_in_this_viewpager_findfragment_settingfragment">Two fragment open in this viewpager (FindFragment, SettingFragment)</string>
+    <string name="for_change_viewpager_fragment_position">For change viewpager fragment position</string>
+    <string name="channel_name">Channer Name</string>
+    <string name="channel_description">Channel Description</string>
+    <string name="press_got_it_button_to_confirm_your_device_find">Press Got It Button to confirm your device find</string>
 </resources>

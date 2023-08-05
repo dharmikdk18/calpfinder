@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.clapphonefinder.R;
-import com.example.clapphonefinder.adapter.LanguageModel;
+import com.example.clapphonefinder.adapter.LanguageAdapter;
+import com.example.clapphonefinder.model.LanguageModel;
 import com.example.clapphonefinder.databinding.ActivityLanguageBinding;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class LanguageActivity extends AppCompatActivity {
 
     ActivityLanguageBinding binding;
     ArrayList<LanguageModel> languageList;
+    LanguageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,14 @@ public class LanguageActivity extends AppCompatActivity {
         languageList.add(new LanguageModel("German", "de", R.drawable.ic_german));
         languageList.add(new LanguageModel("Korean", "ko", R.drawable.ic_korean));
 
+        adapter = new LanguageAdapter(this, languageList);
+        binding.rcvLanguage.setAdapter(adapter);
+        adapter.setOnClickListener(new LanguageAdapter.ClickListener() {
+            @Override
+            public void onClick(int position) {
 
+            }
+        });
 
     }
 }

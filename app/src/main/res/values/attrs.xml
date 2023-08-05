@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PTabLayout">
+        <attr name="selected_tab_bg" format="reference" />
+        <attr name="unselected_tab_bg" format="reference" />
+        <attr name="selected_tab_text_color" format="color" />
+        <attr name="unselected_tab_text_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="RippleSwitch">
+        <attr name="rs_checked" format="boolean"/>
+        <attr name="rs_checked_color" format="color" />
+        <attr name="rs_unchecked_color" format="color" />
+    </declare-styleable>
+</resources>

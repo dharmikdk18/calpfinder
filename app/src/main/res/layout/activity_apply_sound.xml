@@ -11,6 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -64,6 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:includeFontPadding="false"
         android:text="@string/sound"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_sound"
@@ -76,6 +79,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:checked="true"
+        android:thumb="@drawable/thumb_layerlist"
+        android:track="@drawable/track_backgrounds"
         app:layout_constraintBottom_toBottomOf="@id/iv_sound"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_sound" />
@@ -87,6 +93,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:includeFontPadding="false"
         android:text="Volume"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:progressTint="@color/appcolor"
         android:thumbTint="@color/appcolor"
         app:layout_constraintBottom_toBottomOf="@+id/tv_volume"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,10 +120,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:includeFontPadding="false"
         android:text="Duration : "
         android:textColor="@color/black"
         android:textSize="14sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_volume" />
 
@@ -127,45 +137,76 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_duration">
+        app:layout_constraintTop_toBottomOf="@id/tv_duration"
+        app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip15s"
+            style="@style/My_Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="15s" />
+            android:text="15s"
+            app:chipEndPadding="20dp"
+            app:chipStartPadding="20dp" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip30s"
+            style="@style/My_Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30s" />
+            android:text="30s"
+            app:chipEndPadding="20dp"
+            app:chipStartPadding="20dp" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip1m"
+            style="@style/My_Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1m" />
+            android:text="1m"
+            app:chipEndPadding="20dp"
+            app:chipStartPadding="20dp" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip2m"
+            style="@style/My_Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2m" />
+            android:text="2m"
+            app:chipEndPadding="20dp"
+            app:chipStartPadding="20dp" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chiploop"
+            style="@style/My_Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="loop" />
+            android:text="loop"
+            app:chipEndPadding="20dp"
+            app:chipStartPadding="20dp" />
     </com.google.android.material.chip.ChipGroup>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_apply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/btn_apply_button"
+        android:fontFamily="@font/poppins_semibold"
+        android:includeFontPadding="false"
         android:text="Apply"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rl_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
