@@ -96,7 +96,7 @@ public class ApplySoundActivity extends AppCompatActivity {
         applySoundBinding.ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(ApplySoundActivity.this)) {
+                if (!Settings.canDrawOverlays(ApplySoundActivity.this)) {
                     Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                             Uri.parse("package:" + getPackageName()));
                     startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);

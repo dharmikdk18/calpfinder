@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.clapphonefinder.R;
 import com.example.clapphonefinder.databinding.ItemLanguageBinding;
 import com.example.clapphonefinder.model.LanguageModel;
+import com.example.clapphonefinder.utils.LocaleHelper;
+import com.example.clapphonefinder.utils.PreferenceManager;
 
 import java.util.ArrayList;
 
@@ -20,14 +22,17 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
     private ArrayList<LanguageModel> languageList;
     private int lastCheckedPosition = -1;
     ClickListener clickListener;
+    String languageCode;
 
     public void setOnClickListener(ClickListener clickListener) {
         this.clickListener = clickListener;
+
     }
 
     public LanguageAdapter(Context context, ArrayList<LanguageModel> languageList) {
         this.context = context;
         this.languageList = languageList;
+        languageCode = LocaleHelper.getLanguage(context);
     }
 
     @NonNull
@@ -42,6 +47,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
         LanguageModel languageModel = languageList.get(position);
         holder.binding.imvFlag.setImageResource(languageModel.getLanguageIcon());
         holder.binding.tvNameLanguage.setText(languageModel.getLanguage());
+
         holder.binding.layoutParent.setSelected(position == lastCheckedPosition);
         holder.binding.layoutParent.setBackgroundResource(holder.binding.layoutParent.isSelected() ? R.drawable.bg_gray_select : R.drawable.bg_gray);
         holder.binding.imvSelect.setImageResource(holder.binding.layoutParent.isSelected() ? R.drawable.ic_radio_selected : R.drawable.ic_radio_not_select);

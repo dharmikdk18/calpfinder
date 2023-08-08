@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
 
-        mainPagerAdapter.addFragment(new FindFragment(), "Find");
-        mainPagerAdapter.addFragment(new SettingFragment(), "Setting");
+        mainPagerAdapter.addFragment(new FindFragment(), getString(R.string.find));
+        mainPagerAdapter.addFragment(new SettingFragment(), getString(R.string.setting));
 
         binding.viewpager.setAdapter(mainPagerAdapter);
         binding.bottomTabLayout.setupWithViewPager(binding.viewpager);

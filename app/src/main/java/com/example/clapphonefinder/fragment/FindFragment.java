@@ -89,13 +89,13 @@ public class FindFragment extends Fragment {
         });
 
         List<SoundModel> soundList = new ArrayList<>();
-        soundList.add(new SoundModel("Whistle", R.raw.whistle, R.drawable.ic_whistle));
-        soundList.add(new SoundModel("Hello", R.raw.hello, R.drawable.ic_hello));
-        soundList.add(new SoundModel("Car honk", R.raw.car_honk, R.drawable.ic_car_honk));
-        soundList.add(new SoundModel("Door bell", R.raw.door_bell, R.drawable.ic_door_bell));
-        soundList.add(new SoundModel("Party horn", R.raw.party_horn, R.drawable.ic_party_horn));
-        soundList.add(new SoundModel("Police whistle", R.raw.police_whistle, R.drawable.ic_police_whistle));
-        soundList.add(new SoundModel("Cavalry", R.raw.cavalry, R.drawable.ic_cavalry));
+        soundList.add(new SoundModel(getString(R.string.whistle), R.raw.whistle, R.drawable.ic_whistle));
+        soundList.add(new SoundModel(getString(R.string.hello), R.raw.hello, R.drawable.ic_hello));
+        soundList.add(new SoundModel(getString(R.string.car_honk), R.raw.car_honk, R.drawable.ic_car_honk));
+        soundList.add(new SoundModel(getString(R.string.door_bell), R.raw.door_bell, R.drawable.ic_door_bell));
+        soundList.add(new SoundModel(getString(R.string.party_horn), R.raw.party_horn, R.drawable.ic_party_horn));
+        soundList.add(new SoundModel(getString(R.string.police_whistle), R.raw.police_whistle, R.drawable.ic_police_whistle));
+        soundList.add(new SoundModel(getString(R.string.cavalry), R.raw.cavalry, R.drawable.ic_cavalry));
 
         SoundAdapter adapter = new SoundAdapter(activity, soundList);
         binding.rcvSound.setAdapter(adapter);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.clapphonefinder.R;
+import com.example.clapphonefinder.utils.LocaleHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -15,6 +16,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        String selectedLanguage = LocaleHelper.getLanguage(this);
+        LocaleHelper.setLocale(this, selectedLanguage);
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(new Runnable() {
