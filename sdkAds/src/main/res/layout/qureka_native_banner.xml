@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    android:background="@drawable/btn_bg_white"
+    android:clipToPadding="true"
+    android:elevation="5dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/qureka_gif_NativeBanner"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:src="@drawable/qureka_banner_gif_1" />
+
+        <ImageView
+            android:id="@+id/qureka_ad_NativeBanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:src="@drawable/qureka_banner_5" />
+
+    </LinearLayout>
+
+</LinearLayout>

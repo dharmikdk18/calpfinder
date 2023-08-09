@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomNativeAdView">
+        <attr name="adType" format="enum">
+            <enum name="admob" value="0"/>
+            <enum name="facebook" value="1"/>
+            <enum name="loading" value="2"/>
+        </attr>
+    </declare-styleable>
+</resources>
