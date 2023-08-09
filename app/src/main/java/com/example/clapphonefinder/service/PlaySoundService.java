@@ -289,12 +289,9 @@ public class PlaySoundService extends Service {
         if (layoutInflater != null) {
             View inComingCallView = layoutInflater.inflate(R.layout.notification_small, (ViewGroup) null);
             Button btnGotIt = inComingCallView.findViewById(R.id.btn_got_it);
-            btnGotIt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    windowManager.removeView(inComingCallView);
-                    stopForegroundService();
-                }
+            btnGotIt.setOnClickListener(view -> {
+                windowManager.removeView(inComingCallView);
+                stopForegroundService();
             });
             windowManager.addView(inComingCallView, paramsIn);
         }

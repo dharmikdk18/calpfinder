@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.app.sdkads.Ads;
+import com.app.sdkads.App;
 import com.example.clapphonefinder.R;
 import com.example.clapphonefinder.utils.LocaleHelper;
 
@@ -20,13 +22,19 @@ public class SplashActivity extends AppCompatActivity {
         LocaleHelper.setLocale(this, selectedLanguage);
         setContentView(R.layout.activity_splash);
 
-        new Handler().postDelayed(new Runnable() {
+        Ads.Init(SplashActivity.this, new Ads.InitListner() {
             @Override
-            public void run() {
+            public void success() {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
-        }, 3000);
+
+            @Override
+            public void failed(String error) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }
+        });
 
     }
 }
