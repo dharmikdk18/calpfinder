@@ -73,9 +73,8 @@ public class PlaySoundService extends Service {
             int sound = intent.getIntExtra("sound", 0);
             if (action != null && sound != 0) {
                 if (action.equals("play")) {
-                    mediaPlayer = MediaPlayer.create(PlaySoundService.this, sound);
+                    mediaPlayer = MediaPlayer.create(PlaySoundService.this, R.raw.clap_sound);
                     playStart();
-
                 } else {
 
                 }
@@ -146,14 +145,10 @@ public class PlaySoundService extends Service {
         @Override
         public void run() {
             if (isFlashOn) {
-                // If the flash is currently on, turn it off
                 turnOffFlash();
             } else {
-                // If the flash is currently off, turn it on
                 turnOnFlash();
             }
-
-            // Delay the next iteration to create the disco effect
             handler.postDelayed(this, delayMillis);
         }
     };
@@ -161,13 +156,10 @@ public class PlaySoundService extends Service {
     private Runnable sosRunnable = new Runnable() {
         @Override
         public void run() {
-            // Perform the SOS signal pattern
             if (isFlashOn) {
-                // If the flash is currently on, turn it off (short flash)
                 turnOffFlash();
                 handler.postDelayed(this, shortDelayMillis);
             } else {
-                // If the flash is currently off, turn it on (long flash)
                 turnOnFlash();
                 handler.postDelayed(this, longDelayMillis);
             }
@@ -207,9 +199,7 @@ public class PlaySoundService extends Service {
                 if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                     cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
                     try {
-                        // Get the camera ID of the rear-facing camera (you can change this if you want to use the front-facing camera)
                         cameraId = cameraManager.getCameraIdList()[0];
-                        // Turn on the flash
                         cameraManager.setTorchMode(cameraId, true);
                     } catch (CameraAccessException e) {
                         e.printStackTrace();
@@ -219,9 +209,7 @@ public class PlaySoundService extends Service {
                 if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                     cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
                     try {
-                        // Get the camera ID of the rear-facing camera (you can change this if you want to use the front-facing camera)
                         cameraId = cameraManager.getCameraIdList()[0];
-                        // Turn on the flash
                         handler.post(discoRunnable);
                     } catch (CameraAccessException e) {
                         e.printStackTrace();
@@ -231,9 +219,7 @@ public class PlaySoundService extends Service {
                 if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                     cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
                     try {
-                        // Get the camera ID of the rear-facing camera (you can change this if you want to use the front-facing camera)
                         cameraId = cameraManager.getCameraIdList()[0];
-                        // Turn on the flash
                         handler.post(sosRunnable);
                     } catch (CameraAccessException e) {
                         e.printStackTrace();

@@ -39,9 +39,15 @@
         app:tabBackground="@android:color/transparent"
         app:tabIndicator="@android:color/transparent"
         app:tabRippleColor="@null"
-        app:layout_constraintBottom_toTopOf="@id/rl_bottom"
+        app:layout_constraintBottom_toTopOf="@id/risingBanner"
         app:unselected_tab_bg="@drawable/unselected_tab"
         app:unselected_tab_text_color="@color/black" />
+
+    <com.app.sdkads.view.RisingBannerView
+        android:id="@+id/risingBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/rl_bottom"/>
 
     <RelativeLayout
         android:id="@+id/rl_bottom"
@@ -49,4 +55,6 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

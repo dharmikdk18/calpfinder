@@ -37,13 +37,6 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
     private static final String TAG = "DetectClap";
     private ScreenLockReceiver screenLockReceiver;
 
-  /*  @Override
-    public void onCreate() {
-        super.onCreate();
-        this.localBroadcastManager = LocalBroadcastManager.getInstance(this);
-
-    }*/
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -51,12 +44,11 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // Check the action passed through the intent and handle accordingly
+        startForegroundService();
         if (intent != null && intent.getExtras() != null) {
             String action = intent.getStringExtra("action");
             if (action != null) {
                 if (action.equals("start")) {
-                    startForegroundService();
                     IntentFilter intentFilter = new IntentFilter("clapDetected");
                     registerReceiver(clapReceiver, intentFilter);
                     startClapDetection();
@@ -70,16 +62,12 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
     }
 
     private void startForegroundService() {
-        // Build the notification for the foreground service
         Notification notification = createNotification();
-
-        // Start the service as a foreground service
         startForeground(NOTIFICATION_ID, notification);
 
     }
 
     private void stopForegroundService() {
-        // Stop the foreground service and remove the notification
         stopForeground(true);
         stopSelf();
     }
@@ -90,7 +78,6 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
         intent1.putExtra("start", false);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
         unregisterReceiver(clapReceiver);
-//        unregisterReceiver(screenLockReceiver);
         super.onDestroy();
     }
 
@@ -177,14 +164,7 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
     private MediaPlayer mediaPlayer;
     @Override
     public void onClap() {
-//        mediaPlayer = MediaPlayer.create(this, R.raw.clap_sound);
-//        if (mediaPlayer != null) {
-//            mediaPlayer.start();
-//        }
-        Log.d(TAG, "onClap: ");
-
         stopClapDetection();
-
         Intent serviceIntent = new Intent(this, PlaySoundService.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             serviceIntent.putExtra("action", "play");

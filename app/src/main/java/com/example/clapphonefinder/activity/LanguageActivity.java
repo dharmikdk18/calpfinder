@@ -7,7 +7,9 @@ import androidx.core.view.WindowCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.app.sdkads.adsType.Interstitial_Google;
 import com.example.clapphonefinder.R;
 import com.example.clapphonefinder.adapter.LanguageAdapter;
 import com.example.clapphonefinder.model.LanguageModel;
@@ -29,6 +31,13 @@ public class LanguageActivity extends AppCompatActivity {
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         binding = ActivityLanguageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         languageList = new ArrayList<>();
 
@@ -70,5 +79,15 @@ public class LanguageActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Interstitial_Google.showBackInterstitial(this, new Interstitial_Google.OnclickInter() {
+            @Override
+            public void clicked() {
+                finish();
+            }
+        });
     }
 }

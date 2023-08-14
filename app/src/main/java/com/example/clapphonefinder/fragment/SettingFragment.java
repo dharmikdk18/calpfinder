@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import com.app.sdkads.adsType.Interstitial_Google;
 import com.example.clapphonefinder.R;
 import com.example.clapphonefinder.activity.LanguageActivity;
 import com.example.clapphonefinder.databinding.FragmentSettingBinding;
@@ -97,8 +98,14 @@ public class SettingFragment extends Fragment {
         binding.layoutLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), LanguageActivity.class);
-                startActivity(intent);
+                Interstitial_Google.showInterstitial(getActivity(), new Interstitial_Google.OnclickInter() {
+                    @Override
+                    public void clicked() {
+                        Intent intent = new Intent(getActivity(), LanguageActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
 

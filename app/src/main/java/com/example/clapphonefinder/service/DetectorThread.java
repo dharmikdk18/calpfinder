@@ -31,21 +31,23 @@ public class DetectorThread extends Thread {
         this.clapPassScore = 1;
         this.recorder = recorder;
         AudioRecord audioRecord = recorder.getAudioRecord();
-        int bitsPerSample = 0;
-        if (audioRecord.getAudioFormat() == 2) {
-            bitsPerSample = 16;
-        } else if (audioRecord.getAudioFormat() == 3) {
-            bitsPerSample = 8;
+        if (audioRecord != null) {
+            int bitsPerSample = 0;
+            if (audioRecord.getAudioFormat() == 2) {
+                bitsPerSample = 16;
+            } else if (audioRecord.getAudioFormat() == 3) {
+                bitsPerSample = 8;
+            }
+            int channel = 0;
+            if (audioRecord.getChannelConfiguration() == 16) {
+                channel = 1;
+            }
+            this.waveHeader = new WaveHeader();
+            this.waveHeader.setChannels(channel);
+            this.waveHeader.setBitsPerSample(bitsPerSample);
+            this.waveHeader.setSampleRate(audioRecord.getSampleRate());
+            this.clapApi = new ClapApi(this.waveHeader);
         }
-        int channel = 0;
-        if (audioRecord.getChannelConfiguration() == 16) {
-            channel = 1;
-        }
-        this.waveHeader = new WaveHeader();
-        this.waveHeader.setChannels(channel);
-        this.waveHeader.setBitsPerSample(bitsPerSample);
-        this.waveHeader.setSampleRate(audioRecord.getSampleRate());
-        this.clapApi = new ClapApi(this.waveHeader);
     }
 
     private void initBuffer() {

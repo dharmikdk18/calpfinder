@@ -22,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.app.sdkads.adsType.Interstitial_Google;
 import com.example.clapphonefinder.R;
 import com.example.clapphonefinder.databinding.ActivityApplySoundBinding;
 import com.example.clapphonefinder.model.SoundModel;
@@ -93,15 +94,15 @@ public class ApplySoundActivity extends AppCompatActivity {
         applySoundBinding.toolbar.setTitle(soundModel.getName());
         initControls();
 //        mediaPlayer = MediaPlayer.create(ApplySoundActivity.this, soundModel.getSound());
-        applySoundBinding.ivPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!Settings.canDrawOverlays(ApplySoundActivity.this)) {
+        applySoundBinding.ivPlay.setOnClickListener(view -> {
+            if (!Settings.canDrawOverlays(ApplySoundActivity.this)) {
+                if (isOverlayPermissionAvailable()) {
                     Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                             Uri.parse("package:" + getPackageName()));
                     startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);
                 } else {
-                    // Show your overlay window here
+                    // Overlay permission not available, provide guidance to the user
+//                        showOverlayPermissionNotAvailableDialog();
                     if (ContextCompat.checkSelfPermission(ApplySoundActivity.this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
                         Intent serviceIntent = new Intent(ApplySoundActivity.this, PlaySoundService.class);
                         if (!Utils.isServiceRunning(ApplySoundActivity.this, PlaySoundService.class)) {
@@ -118,6 +119,24 @@ public class ApplySoundActivity extends AppCompatActivity {
                     }else {
                         requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 100);
                     }
+                }
+            } else {
+                // Show your overlay window here
+                if (ContextCompat.checkSelfPermission(ApplySoundActivity.this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+                    Intent serviceIntent = new Intent(ApplySoundActivity.this, PlaySoundService.class);
+                    if (!Utils.isServiceRunning(ApplySoundActivity.this, PlaySoundService.class)) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            serviceIntent.putExtra("action", "play");
+                            serviceIntent.putExtra("sound", soundModel.getSound());
+                            startForegroundService(serviceIntent);
+                        } else {
+                            startService(serviceIntent);
+                        }
+                    }  else {
+                        stopService(serviceIntent);
+                    }
+                }else {
+                    requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 100);
                 }
             }
         });
@@ -206,4 +225,24 @@ public class ApplySoundActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isOverlayPermissionAvailable() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // Check for specific manufacturer or device names that restrict the feature
+            if ("Xiaomi".equalsIgnoreCase(Build.MANUFACTURER)) {
+                return false; // "Display over other apps" feature not available on Redmi A2
+            }
+            return true; // For other devices on Android Marshmallow (6.0) and later
+        }
+        return false; // For older Android versions
+    }
+
+    @Override
+    public void onBackPressed() {
+        Interstitial_Google.showBackInterstitial(this, new Interstitial_Google.OnclickInter() {
+            @Override
+            public void clicked() {
+                finish();
+            }
+        });
+    }
 }
