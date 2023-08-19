@@ -27,8 +27,8 @@ public class PermissionActivity extends AppCompatActivity {
 
     private ActivityPermissionBinding binding;
     private Context context;
-    private static final int NOTIFICATION_CODE = 100, CAMERA_CODE = 200, RECORD_AUDIO_CODE = 300, READ_MEDIA_AUDIO_CODE = 400, READ_MEDIA_PHOTO_CODE = 500;
-    private boolean isNotificationPermission = false, isCameraPermission = false, isMicrophonePermission = false, isMusicAndAudioPermission = false, isPhotosAndVideosPermission = false;
+    private static final int NOTIFICATION_CODE = 100, CAMERA_CODE = 200, RECORD_AUDIO_CODE = 300, READ_MEDIA_AUDIO_CODE = 400, READ_MEDIA_PHOTO_CODE = 500, REQUEST_CODE_OVERLAY_PERMISSION = 600;
+    private boolean isNotificationPermission = false, isCameraPermission = false, isMicrophonePermission = false, isMusicAndAudioPermission = false, isPhotosAndVideosPermission = false, isOverlayPermission = false;
     private PermissionUtils permissionUtils;
 
     @Override
@@ -75,6 +75,15 @@ public class PermissionActivity extends AppCompatActivity {
             }
         });
 
+        binding.overlayPermission.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);
+            }
+        });
+
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,14 +114,16 @@ public class PermissionActivity extends AppCompatActivity {
         isMicrophonePermission = permissionUtils.isMicrophonePermission();
         isMusicAndAudioPermission = permissionUtils.isMusicAndAudioPermission();
         isPhotosAndVideosPermission = permissionUtils.isPhotosAndVideosPermission();
+        isOverlayPermission = permissionUtils.isOverlayPermission();
 
         binding.notification.setChecked(isNotificationPermission);
         binding.camera.setChecked(isCameraPermission);
         binding.microphone.setChecked(isMicrophonePermission);
         binding.musicAndAudio.setChecked(isMusicAndAudioPermission);
         binding.photosAndVideos.setChecked(isPhotosAndVideosPermission);
+        binding.overlayPermission.setChecked(isOverlayPermission);
 
-        if (isNotificationPermission && isCameraPermission && isMicrophonePermission && isMusicAndAudioPermission && isPhotosAndVideosPermission){
+        if (isNotificationPermission && isCameraPermission && isMicrophonePermission && isMusicAndAudioPermission && isPhotosAndVideosPermission && isOverlayPermission){
             binding.btnNext.setEnabled(true);
         } else {
             binding.btnNext.setEnabled(false);

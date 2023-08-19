@@ -17,7 +17,7 @@ import com.example.clapphonefinder.utils.PermissionUtils;
 public class SplashActivity extends AppCompatActivity {
     private PermissionUtils permissionUtils;
     private Context context;
-    private boolean isNotificationPermission = false, isCameraPermission = false, isMicrophonePermission = false, isMusicAndAudioPermission = false, isPhotosAndVideosPermission = false;
+    private boolean isNotificationPermission = false, isCameraPermission = false, isMicrophonePermission = false, isMusicAndAudioPermission = false, isPhotosAndVideosPermission = false, isOverlayPermission = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,7 @@ public class SplashActivity extends AppCompatActivity {
         isMicrophonePermission = permissionUtils.isMicrophonePermission();
         isMusicAndAudioPermission = permissionUtils.isMusicAndAudioPermission();
         isPhotosAndVideosPermission = permissionUtils.isPhotosAndVideosPermission();
+        isOverlayPermission = permissionUtils.isOverlayPermission();
 
         Ads.Init(SplashActivity.this, new Ads.InitListner() {
             @Override
@@ -51,7 +52,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void nextScreen() {
-        if (isNotificationPermission && isCameraPermission && isMicrophonePermission && isMusicAndAudioPermission && isPhotosAndVideosPermission){
+        if (isNotificationPermission && isCameraPermission && isMicrophonePermission && isMusicAndAudioPermission && isPhotosAndVideosPermission && isOverlayPermission){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         } else {

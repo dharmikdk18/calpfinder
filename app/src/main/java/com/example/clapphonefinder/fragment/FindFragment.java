@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.view.*;
+import android.widget.TextView;
 
 import com.app.sdkads.adsType.Interstitial_Google;
 import com.example.clapphonefinder.*;
@@ -28,14 +29,36 @@ public class FindFragment extends Fragment {
     private FragmentFindBinding binding;
     private Activity activity;
 
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Handle the broadcast message here
+            boolean status = intent.getBooleanExtra("start", false);
+            if (status) {
+                binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
+            }else {
+                binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
+            }
+        }
+    };
+
     @Override
     public void onResume() {
         super.onResume();
+        IntentFilter filter = new IntentFilter("clap");
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver, filter);
         if (Utils.isServiceRunning(activity, MyForegroundService.class)) {
             binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
         } else {
             binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
         }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
     }
 
     @Override
@@ -59,9 +82,10 @@ public class FindFragment extends Fragment {
                 } else {
                     activity.startService(serviceIntent);
                 }
-                binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
+//                binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
             } else {
-                binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
+//                binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
+                activity.stopService(serviceIntent);
             }
         }));
 

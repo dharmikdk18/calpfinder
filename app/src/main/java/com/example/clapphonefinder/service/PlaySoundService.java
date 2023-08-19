@@ -278,6 +278,8 @@ public class PlaySoundService extends Service {
             btnGotIt.setOnClickListener(view -> {
                 windowManager.removeView(inComingCallView);
                 stopForegroundService();
+                Intent serviceIntent = new Intent(this, MyForegroundService.class);
+                stopService(serviceIntent);
             });
             windowManager.addView(inComingCallView, paramsIn);
         }

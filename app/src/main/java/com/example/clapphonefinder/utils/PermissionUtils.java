@@ -4,8 +4,11 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.provider.Settings;
 
 import androidx.core.content.ContextCompat;
+
+import com.example.clapphonefinder.activity.ApplySoundActivity;
 
 public class PermissionUtils {
     private Context context;
@@ -51,11 +54,18 @@ public class PermissionUtils {
     }
 
     public boolean isPhotosAndVideosPermission() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_VIDEO) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public boolean isOverlayPermission(){
+        if (!Settings.canDrawOverlays(context)) {
+            return false;
+        } else {
+            return true;
         }
     }
 }

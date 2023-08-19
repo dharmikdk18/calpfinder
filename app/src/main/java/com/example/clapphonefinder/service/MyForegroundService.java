@@ -51,9 +51,9 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
                     IntentFilter intentFilter = new IntentFilter("clapDetected");
                     registerReceiver(clapReceiver, intentFilter);
                     startClapDetection();
-                } else if (action.equals("stop")) {
-                    stopClapDetection();
-                    stopForegroundService();
+                    Intent intent1 = new Intent("clap");
+                    intent1.putExtra("start", true);
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
                 }
             }
         }
@@ -65,17 +65,11 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
         startForeground(NOTIFICATION_ID, notification);
     }
 
-    private void stopForegroundService() {
-        stopForeground(true);
-        stopSelf();
-    }
-
     @Override
     public void onDestroy() {
-        Intent intent1 = new Intent("clap");
-        intent1.putExtra("start", false);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
         unregisterReceiver(clapReceiver);
+        stopForeground(true);
+        stopSelf();
         super.onDestroy();
     }
 
@@ -90,12 +84,9 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-
     }
 
     private Notification createNotification() {
-        // Build and return the notification to be shown as part of the foreground service
-        // Set up the notification channel for Android Oreo and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel();
         }
@@ -106,13 +97,8 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
                 .setSmallIcon(R.drawable.ic_notification_icon)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        // Customize the notification as needed
-        // ...
-
         return builder.build();
     }
-
-
 
     private void startClapDetection() {
         try {
@@ -137,23 +123,19 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
             this.recorder = null;
         }
 
-        // Unregister the ScreenLockReceiver if it was registered
         if (screenLockReceiver != null) {
             unregisterReceiver(screenLockReceiver);
             screenLockReceiver = null;
         }
-
-        // Stop the foreground service
-        stopForeground(true);
-        stopSelf();
-
+        Intent intent1 = new Intent("clap");
+        intent1.putExtra("start", false);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
     }
 
     private BroadcastReceiver clapReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onClap: ");
-            // Start the MainActivity when the clap is detected
             Intent mainActivityIntent = new Intent(context, MainActivity.class);
             mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(mainActivityIntent);
@@ -176,7 +158,6 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
     private class ScreenLockReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Show the popup dialog when the device is locked
             if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
                 showPopupDialog();
                 Log.d(TAG, "onReceive: Screen OFF");
