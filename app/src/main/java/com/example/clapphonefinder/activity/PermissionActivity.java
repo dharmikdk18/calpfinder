@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -22,6 +25,8 @@ import android.widget.Switch;
 import com.example.clapphonefinder.R;
 import com.example.clapphonefinder.databinding.ActivityPermissionBinding;
 import com.example.clapphonefinder.utils.PermissionUtils;
+
+import java.util.List;
 
 public class PermissionActivity extends AppCompatActivity {
 
@@ -75,23 +80,16 @@ public class PermissionActivity extends AppCompatActivity {
             }
         });
 
-        binding.overlayPermission.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + getPackageName()));
-                startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);
-            }
+        binding.overlayPermission.setOnCheckedChangeListener((compoundButton, b) -> {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
+            startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);
         });
 
-        binding.btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.btnNext.setEnabled(false);
-                Intent intent = new Intent(context, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        binding.btnNext.setOnClickListener(view -> {
+            binding.btnNext.setEnabled(false);
+            Intent intent = new Intent(context, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
