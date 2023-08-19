@@ -27,30 +27,20 @@ public class FindFragment extends Fragment {
     private static final String TAG = "FindFragment";
     private FragmentFindBinding binding;
     private Activity activity;
-    private BroadcastReceiver localBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Handle the broadcast here
-//            String message = intent.getStringExtra("message");
-            // Do something with the message
-            boolean start = intent.getBooleanExtra("start", false);
-            if (!start){
-                binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
-            }
-        }
-    };
 
     @Override
     public void onResume() {
         super.onResume();
-        IntentFilter intentFilter = new IntentFilter("clap");
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(localBroadcastReceiver, intentFilter);
+        if (Utils.isServiceRunning(activity, MyForegroundService.class)) {
+            binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
+        } else {
+            binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(localBroadcastReceiver);
     }
 
     @Override
@@ -60,66 +50,20 @@ public class FindFragment extends Fragment {
 
         activity = getActivity();
 
-        if (Utils.isServiceRunning(activity, MyForegroundService.class)) {
-            binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
-        } else {
-            binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
-        }
-
-        binding.imvSound.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Interstitial_Google.showBackInterstitial(activity, new Interstitial_Google.OnclickInter() {
-                    @Override
-                    public void clicked() {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
-                                    && ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_MEDIA_AUDIO) == PackageManager.PERMISSION_GRANTED
-                                    && ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED
-                                    && ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_MEDIA_VIDEO) == PackageManager.PERMISSION_GRANTED
-                                    && ContextCompat.checkSelfPermission(activity, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-                                Intent serviceIntent = new Intent(activity, MyForegroundService.class);
-                                if (!Utils.isServiceRunning(activity, MyForegroundService.class)) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        serviceIntent.putExtra("action", "start");
-                                        activity.startForegroundService(serviceIntent);
-
-                                    } else {
-                                        activity.startService(serviceIntent);
-                                    }
-                                    binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
-                                } else {
-                                    binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
-                                }
-                            } else {
-                                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.READ_MEDIA_AUDIO, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO}, 100);
-                            }
-                        } else {
-                            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                                    && ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                                    && ContextCompat.checkSelfPermission(activity, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-                                Intent serviceIntent = new Intent(activity, MyForegroundService.class);
-                                if (!Utils.isServiceRunning(activity, MyForegroundService.class)) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        serviceIntent.putExtra("action", "start");
-                                        activity.startForegroundService(serviceIntent);
-
-                                    } else {
-                                        activity.startService(serviceIntent);
-                                    }
-                                    binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
-                                } else {
-                                    binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
-                                }
-                            } else {
-                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 100);
-                            }
-                        }
-                    }
-                });
-
+        binding.imvSound.setOnClickListener(view -> Interstitial_Google.showBackInterstitial(activity, () -> {
+            Intent serviceIntent = new Intent(activity, MyForegroundService.class);
+            if (!Utils.isServiceRunning(activity, MyForegroundService.class)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    serviceIntent.putExtra("action", "start");
+                    activity.startForegroundService(serviceIntent);
+                } else {
+                    activity.startService(serviceIntent);
+                }
+                binding.imvSound.setBackgroundResource(R.drawable.ic_on_service);
+            } else {
+                binding.imvSound.setBackgroundResource(R.drawable.ic_off_service);
             }
-        });
+        }));
 
         List<SoundModel> soundList = new ArrayList<>();
         soundList.add(new SoundModel(getString(R.string.whistle), R.raw.whistle, R.drawable.ic_whistle));

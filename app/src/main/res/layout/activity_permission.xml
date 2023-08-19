@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PermissionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <Switch
+            android:id="@+id/notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notification"
+            android:layout_margin="10dp"/>
+
+        <Switch
+            android:id="@+id/camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camera"
+            android:layout_margin="10dp"/>
+
+        <Switch
+            android:id="@+id/microphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Microphone"
+            android:layout_margin="10dp"/>
+
+        <Switch
+            android:id="@+id/music_and_audio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Music and Audio"
+            android:layout_margin="10dp"/>
+
+        <Switch
+            android:id="@+id/photos_and_videos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Photos and Videos"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+</RelativeLayout>
