@@ -31,7 +31,6 @@ import com.example.clapphonefinder.utils.Recorder;
 public class MyForegroundService extends Service implements DetectorThread.OnClapListener {
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "MyForegroundServiceChannel";
-//    LocalBroadcastManager localBroadcastManager;
     private DetectorThread detectorThread;
     private Recorder recorder;
     private static final String TAG = "DetectClap";
@@ -64,7 +63,6 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
     private void startForegroundService() {
         Notification notification = createNotification();
         startForeground(NOTIFICATION_ID, notification);
-
     }
 
     private void stopForegroundService() {
@@ -219,7 +217,6 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
                 return;
             }
             notificationManagerCompat.notify(1, builder.build());
-        } else {
         }
     }
 }
