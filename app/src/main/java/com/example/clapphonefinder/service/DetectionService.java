@@ -64,7 +64,6 @@ public class DetectionService extends Service implements DetectorThread.OnClapLi
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void createNotificationChannel() {
-        // Create a notification channel (required for Android 8.0 and above)
         NotificationChannel channel = new NotificationChannel(
                 CHANNEL_ID,
                 "My Foreground Service Channel",
@@ -75,9 +74,6 @@ public class DetectionService extends Service implements DetectorThread.OnClapLi
     }
 
     private Notification createNotification() {
-        // Create and configure a notification for the foreground service
-        // You can customize the notification to show relevant information to the user
-        // Example:
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("My Foreground Service")
                 .setContentText("Running in the background")
@@ -85,30 +81,6 @@ public class DetectionService extends Service implements DetectorThread.OnClapLi
 
         return builder.build();
     }
-/*
-    private Notification createNotification() {
-        // Create and configure a notification for the foreground service
-        // You can customize the notification to show relevant information to the user
-        // Example:
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("My Background Service")
-                .setContentText("Running in the background")
-                .setSmallIcon(R.drawable.ic_notification_icon);
-
-        // Create a notification channel (required for Android 8.0 and above)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "My Background Service Channel",
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-        return builder.build();
-    }
-*/
 
     private void startClapDetection() {
         try {
@@ -150,6 +122,5 @@ public class DetectionService extends Service implements DetectorThread.OnClapLi
     public void onClap() {
         stopClapDetection();
         this.localBroadcastManager.sendBroadcast(new Intent("Clap"));
-//        Log.d(TAG, "Clap Detected successfully");
     }
 }

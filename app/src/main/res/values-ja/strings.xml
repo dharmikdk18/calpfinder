@@ -4,14 +4,11 @@
     <string name="find">探す</string>
     <string name="setting">設定</string>
     <string name="tap_to_active">タップしてアクティブ化</string>
-    <string name="sound_sensitivity">音の感度</string>
     <string name="whistle">口笛</string>
     <string name="sound">音</string>
     <string name="info">情報</string>
     <string name="two_fragment_open_in_this_viewpager_findfragment_settingfragment">このViewPagerに2つのフラグメントが開かれています（FindFragment、SettingFragment）</string>
     <string name="for_change_viewpager_fragment_position">ViewPager内のフラグメントの位置を変更するには</string>
-    <string name="channel_name">チャンネル名</string>
-    <string name="channel_description">チャンネルの説明</string>
     <string name="press_got_it_button_to_confirm_your_device_find">デバイスを見つけるために「了解」ボタンを押してください</string>
     <string name="done">完了</string>
     <string name="this_action_contains_ads">（このアクションには広告が含まれる場合があります）</string>
@@ -23,10 +20,7 @@
     <string name="more">その他</string>
     <string name="language">言語</string>
     <string name="rate_us">評価する</string>
-    <string name="feedback">フィードバック</string>
     <string name="privacy_policy">プライバシーポリシー</string>
-    <string name="settings">設定</string>
-    <string name="main">メイン</string>
     <string name="hello">こんにちは</string>
     <string name="car_honk">車のクラクション</string>
     <string name="door_bell">ドアベル</string>

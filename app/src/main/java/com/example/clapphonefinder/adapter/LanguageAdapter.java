@@ -1,5 +1,6 @@
 package com.example.clapphonefinder.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,14 +44,15 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LanguageAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LanguageAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         LanguageModel languageModel = languageList.get(position);
-        holder.binding.imvFlag.setImageResource(languageModel.getLanguageIcon());
+
         holder.binding.tvNameLanguage.setText(languageModel.getLanguage());
 
         holder.binding.layoutParent.setSelected(position == lastCheckedPosition);
-        holder.binding.layoutParent.setBackgroundResource(holder.binding.layoutParent.isSelected() ? R.drawable.bg_gray_select : R.drawable.bg_gray);
+
         holder.binding.imvSelect.setImageResource(holder.binding.layoutParent.isSelected() ? R.drawable.ic_radio_selected : R.drawable.ic_radio_not_select);
+        holder.binding.tvNameLanguage.setTextColor(holder.binding.layoutParent.isSelected() ? context.getColor(R.color.appcolor) : context.getColor(R.color.text_color));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

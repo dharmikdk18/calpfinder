@@ -105,6 +105,7 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
             stopClapDetection();
         } catch (Exception e) {
         }
+
         this.recorder = new Recorder(this);
         this.recorder.startRecording();
         this.detectorThread = new DetectorThread(this.recorder);
@@ -130,6 +131,9 @@ public class MyForegroundService extends Service implements DetectorThread.OnCla
         Intent intent1 = new Intent("clap");
         intent1.putExtra("start", false);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
+
+        stopForeground(true);
+        stopSelf();
     }
 
     private BroadcastReceiver clapReceiver = new BroadcastReceiver() {

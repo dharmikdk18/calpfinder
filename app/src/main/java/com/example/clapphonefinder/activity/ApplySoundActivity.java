@@ -38,7 +38,6 @@ public class ApplySoundActivity extends AppCompatActivity {
     ActivityApplySoundBinding applySoundBinding;
     SoundModel soundModel;
     AudioManager audioManager;
-//    private MediaPlayer mediaPlayer;
     int sound;
     boolean enableSound;
     String time;
@@ -48,9 +47,7 @@ public class ApplySoundActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("android.media.VOLUME_CHANGED_ACTION")) {
-                // Retrieve the current system volume
                 int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                // Update the seekbar progress based on the volume
                 applySoundBinding.progressBar.setProgress(currentVolume);
             }
         }
@@ -93,51 +90,18 @@ public class ApplySoundActivity extends AppCompatActivity {
 
         applySoundBinding.toolbar.setTitle(soundModel.getName());
         initControls();
-//        mediaPlayer = MediaPlayer.create(ApplySoundActivity.this, soundModel.getSound());
         applySoundBinding.ivPlay.setOnClickListener(view -> {
-            if (!Settings.canDrawOverlays(ApplySoundActivity.this)) {
-                if (isOverlayPermissionAvailable()) {
-                    Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                            Uri.parse("package:" + getPackageName()));
-                    startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION);
+            Intent serviceIntent = new Intent(ApplySoundActivity.this, PlaySoundService.class);
+            if (!Utils.isServiceRunning(ApplySoundActivity.this, PlaySoundService.class)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    serviceIntent.putExtra("action", "play");
+                    serviceIntent.putExtra("sound", soundModel.getSound());
+                    startForegroundService(serviceIntent);
                 } else {
-                    // Overlay permission not available, provide guidance to the user
-//                        showOverlayPermissionNotAvailableDialog();
-                    if (ContextCompat.checkSelfPermission(ApplySoundActivity.this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-                        Intent serviceIntent = new Intent(ApplySoundActivity.this, PlaySoundService.class);
-                        if (!Utils.isServiceRunning(ApplySoundActivity.this, PlaySoundService.class)) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                serviceIntent.putExtra("action", "play");
-                                serviceIntent.putExtra("sound", soundModel.getSound());
-                                startForegroundService(serviceIntent);
-                            } else {
-                                startService(serviceIntent);
-                            }
-                        }  else {
-                            stopService(serviceIntent);
-                        }
-                    }else {
-                        requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 100);
-                    }
+                    startService(serviceIntent);
                 }
-            } else {
-                // Show your overlay window here
-                if (ContextCompat.checkSelfPermission(ApplySoundActivity.this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-                    Intent serviceIntent = new Intent(ApplySoundActivity.this, PlaySoundService.class);
-                    if (!Utils.isServiceRunning(ApplySoundActivity.this, PlaySoundService.class)) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            serviceIntent.putExtra("action", "play");
-                            serviceIntent.putExtra("sound", soundModel.getSound());
-                            startForegroundService(serviceIntent);
-                        } else {
-                            startService(serviceIntent);
-                        }
-                    }  else {
-                        stopService(serviceIntent);
-                    }
-                }else {
-                    requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 100);
-                }
+            }  else {
+                stopService(serviceIntent);
             }
         });
 
@@ -227,13 +191,9 @@ public class ApplySoundActivity extends AppCompatActivity {
 
     private boolean isOverlayPermissionAvailable() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            // Check for specific manufacturer or device names that restrict the feature
-            if ("Xiaomi".equalsIgnoreCase(Build.MANUFACTURER)) {
-                return false; // "Display over other apps" feature not available on Redmi A2
-            }
-            return true; // For other devices on Android Marshmallow (6.0) and later
+            return true;
         }
-        return false; // For older Android versions
+        return false;
     }
 
     @Override

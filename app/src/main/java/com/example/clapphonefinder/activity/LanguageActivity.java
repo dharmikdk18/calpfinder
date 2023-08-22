@@ -3,6 +3,7 @@ package com.example.clapphonefinder.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.WindowCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class LanguageActivity extends AppCompatActivity {
 
         adapter = new LanguageAdapter(this, languageList);
         binding.rcvLanguage.setAdapter(adapter);
-
+        binding.rcvLanguage.addItemDecoration(new DividerItemDecoration(binding.rcvLanguage.getContext(), DividerItemDecoration.VERTICAL));
         adapter.setOnClickListener(new LanguageAdapter.ClickListener() {
             @Override
             public void onClick(int position) {

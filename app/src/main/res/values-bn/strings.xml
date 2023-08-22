@@ -4,14 +4,11 @@
     <string name="find">খোঁজা</string>
     <string name="setting">সেটিংস</string>
     <string name="tap_to_active">সক্রিয় করতে ট্যাপ করুন</string>
-    <string name="sound_sensitivity">শব্দ সংবেদনশীলতা</string>
     <string name="whistle">শ্বসন</string>
     <string name="sound">ধ্বনি</string>
     <string name="info">তথ্য</string>
     <string name="two_fragment_open_in_this_viewpager_findfragment_settingfragment">এই ViewPager এ দুটি ফ্র্যাগমেন্ট খোলা আছে (FindFragment, SettingFragment)</string>
     <string name="for_change_viewpager_fragment_position">ViewPager এ ফ্র্যাগমেন্ট এর অবস্থান পরিবর্তন করতে</string>
-    <string name="channel_name">চ্যানেলের নাম</string>
-    <string name="channel_description">চ্যানেলের বর্ণনা</string>
     <string name="press_got_it_button_to_confirm_your_device_find">আপনার ডিভাইস খুঁজে পেতে "ধার্য করেছি" বোতাম চাপুন</string>
     <string name="done">সম্পন্ন</string>
     <string name="this_action_contains_ads">(এই ক্রিয়া বিজ্ঞাপন ধারণ করতে পারে)</string>
@@ -23,10 +20,7 @@
     <string name="more">আরও</string>
     <string name="language">ভাষা</string>
     <string name="rate_us">আমাদের মূল্যায়ন করুন</string>
-    <string name="feedback">মতামত</string>
     <string name="privacy_policy">গোপনীয়তা নীতি</string>
-    <string name="settings">সেটিংস</string>
-    <string name="main">মুখ্য</string>
     <string name="hello">হ্যালো</string>
     <string name="car_honk">গাড়ী সহ্য</string>
     <string name="door_bell">দরজা ঘন্টা</string>

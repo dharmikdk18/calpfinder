@@ -4,14 +4,11 @@
     <string name="find">Trouver</string>
     <string name="setting">Réglages</string>
     <string name="tap_to_active">Appuyer pour activer</string>
-    <string name="sound_sensitivity">Sensibilité du son</string>
     <string name="whistle">Siffler</string>
     <string name="sound">Son</string>
     <string name="info">Infos</string>
     <string name="two_fragment_open_in_this_viewpager_findfragment_settingfragment">Deux fragments ouverts dans ce ViewPager (FindFragment, SettingFragment)</string>
     <string name="for_change_viewpager_fragment_position">Pour changer la position du fragment dans le ViewPager</string>
-    <string name="channel_name">Nom du canal</string>
-    <string name="channel_description">Description du canal</string>
     <string name="press_got_it_button_to_confirm_your_device_find">Appuyez sur le bouton "J'ai compris" pour confirmer la recherche de votre appareil</string>
     <string name="done">Terminé</string>
     <string name="this_action_contains_ads">(Cette action peut contenir des publicités)</string>
@@ -23,10 +20,7 @@
     <string name="more">Plus</string>
     <string name="language">Langue</string>
     <string name="rate_us">Évaluez-nous</string>
-    <string name="feedback">Commentaires</string>
     <string name="privacy_policy">Politique de confidentialité</string>
-    <string name="settings">Réglages</string>
-    <string name="main">Principal</string>
     <string name="hello">Bonjour</string>
     <string name="car_honk">Klaxon de voiture</string>
     <string name="door_bell">Sonnette de porte</string>

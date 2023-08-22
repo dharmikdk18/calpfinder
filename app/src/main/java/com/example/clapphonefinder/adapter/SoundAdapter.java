@@ -15,6 +15,7 @@ import com.app.sdkads.adsType.Interstitial_Google;
 import com.example.clapphonefinder.activity.ApplySoundActivity;
 import com.example.clapphonefinder.databinding.SoundItemBinding;
 import com.example.clapphonefinder.model.SoundModel;
+import com.example.clapphonefinder.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,7 @@ public class SoundAdapter extends RecyclerView.Adapter<SoundAdapter.ViewHolder> 
         SoundModel soundModel = soundList.get(position);
         holder.binding.ivSoundImage.setImageResource(soundModel.getImage());
         holder.binding.tvSoundName.setText(soundModel.getName());
+        Utils.applyShadow(activity, holder.binding.item);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

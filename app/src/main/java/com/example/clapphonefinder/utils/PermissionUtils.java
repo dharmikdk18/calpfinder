@@ -2,21 +2,10 @@ package com.example.clapphonefinder.utils;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.text.TextUtils;
-import android.util.Log;
-
 import androidx.core.content.ContextCompat;
-
-import com.example.clapphonefinder.activity.ApplySoundActivity;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class PermissionUtils {
     private Context context;

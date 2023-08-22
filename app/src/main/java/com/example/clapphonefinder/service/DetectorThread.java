@@ -108,8 +108,4 @@ public class DetectorThread extends Thread {
     public void setOnClapListener(OnClapListener onClapListener) {
         this.onClapListener = onClapListener;
     }
-
-    public int getTotalClapsDetected() {
-        return this.totalClapsDetected;
-    }
 }

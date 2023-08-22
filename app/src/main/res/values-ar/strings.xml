@@ -4,14 +4,11 @@
     <string name="find">البحث</string>
     <string name="setting">الإعدادات</string>
     <string name="tap_to_active">اضغط للتفعيل</string>
-    <string name="sound_sensitivity">حساسية الصوت</string>
     <string name="whistle">صافرة</string>
     <string name="sound">صوت</string>
     <string name="info">معلومات</string>
     <string name="two_fragment_open_in_this_viewpager_findfragment_settingfragment">هناك قطعتان مفتوحتان في هذا المُظهر (FindFragment, SettingFragment)</string>
     <string name="for_change_viewpager_fragment_position">لتغيير موضع القطعة في المُظهر</string>
-    <string name="channel_name">اسم القناة</string>
-    <string name="channel_description">وصف القناة</string>
     <string name="press_got_it_button_to_confirm_your_device_find">اضغط على الزر "فهمت" لتأكيد العثور على جهازك</string>
     <string name="done">تم</string>
     <string name="this_action_contains_ads">(قد تحتوي هذه الإجراءات على إعلانات)</string>
@@ -23,10 +20,7 @@
     <string name="more">المزيد</string>
     <string name="language">اللغة</string>
     <string name="rate_us">قيّمنا</string>
-    <string name="feedback">تعليقات</string>
     <string name="privacy_policy">سياسة الخصوصية</string>
-    <string name="settings">الإعدادات</string>
-    <string name="main">الرئيسية</string>
     <string name="hello">مرحباً</string>
     <string name="car_honk">صفارة السيارة</string>
     <string name="door_bell">جرس الباب</string>

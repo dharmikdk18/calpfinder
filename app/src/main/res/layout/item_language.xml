@@ -6,16 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@drawable/bg_gray"
     android:elevation="2dp"
     android:layoutDirection="ltr"
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/imv_flag"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_language_default"
+        android:id="@+id/imv_select"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_radio_not_select"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,30 +25,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/bevietnampro_regular"
+        android:fontFamily="@font/inter_regular"
         android:maxLines="1"
         android:singleLine="true"
         android:text="Russian"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imv_select"
-        app:layout_constraintStart_toEndOf="@+id/imv_flag"
+        app:layout_constraintStart_toEndOf="@+id/imv_select"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<RadioButton
-        android:id="@+id/imv_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>-->
-    <ImageView
-        android:id="@+id/imv_select"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/ic_radio_not_select"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

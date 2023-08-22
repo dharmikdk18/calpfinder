@@ -4,14 +4,11 @@
     <string name="find">찾기</string>
     <string name="setting">설정</string>
     <string name="tap_to_active">탭하여 활성화</string>
-    <string name="sound_sensitivity">소리 감도</string>
     <string name="whistle">휘파람</string>
     <string name="sound">소리</string>
     <string name="info">정보</string>
     <string name="two_fragment_open_in_this_viewpager_findfragment_settingfragment">이 ViewPager에 두 개의 프래그먼트가 열려 있습니다 (FindFragment, SettingFragment)</string>
     <string name="for_change_viewpager_fragment_position">ViewPager 내의 프래그먼트 위치 변경하기</string>
-    <string name="channel_name">채널 이름</string>
-    <string name="channel_description">채널 설명</string>
     <string name="press_got_it_button_to_confirm_your_device_find">기기를 찾기 위해 "확인" 버튼을 누르세요</string>
     <string name="done">완료</string>
     <string name="this_action_contains_ads">(이 동작은 광고를 포함할 수 있습니다)</string>
@@ -23,10 +20,7 @@
     <string name="more">더 보기</string>
     <string name="language">언어</string>
     <string name="rate_us">평가하기</string>
-    <string name="feedback">피드백</string>
     <string name="privacy_policy">개인 정보 보호 정책</string>
-    <string name="settings">설정</string>
-    <string name="main">메인</string>
     <string name="hello">안녕하세요</string>
     <string name="car_honk">차량 경적</string>
     <string name="door_bell">현관 벨</string>

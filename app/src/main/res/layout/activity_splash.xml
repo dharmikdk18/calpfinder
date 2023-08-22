@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".activity.SplashActivity">
 
-    <ImageView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/bg_splash"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/load"
+    <ImageView
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:src="@drawable/logo" />
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:adjustViewBounds="true"
-        android:paddingHorizontal="50dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_ads"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading_splash"
-        app:lottie_renderMode="hardware"
-        app:lottie_speed="1" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <TextView
-        android:id="@+id/tv_ads"
+        android:id="@+id/tv_per"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:text="@string/this_action_contains_ads"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="0%"
+        android:textColor="#1A2026"
+        android:textSize="14sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:indeterminate="false"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
+        app:trackCornerRadius="10dp"
+        android:indeterminateTint="@color/appcolor"
+        android:progressDrawable="@drawable/progress_bar"
+        android:progress="0"/>
+
+</LinearLayout>
