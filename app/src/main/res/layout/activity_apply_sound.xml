@@ -7,17 +7,34 @@
     android:background="@color/white"
     tools:context=".activity.ApplySoundActivity">
 
+    <RelativeLayout
+        android:id="@+id/ll_top_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_back"
-        app:title="@string/whistle"
-        app:titleTextAppearance="@style/titleToolbarTextAppearance" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_top_view"
+        app:navigationIcon="@drawable/ic_back" >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/whistle"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:fontFamily="@font/inter_semibold"
+            android:textColor="@color/black"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <View
         android:id="@+id/view"
@@ -65,10 +82,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/inter_regular"
         android:includeFontPadding="false"
         android:text="@string/sound"
-        android:textSize="20sp"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_sound"
         app:layout_constraintEnd_toStartOf="@id/sound_switch"
         app:layout_constraintStart_toEndOf="@id/iv_sound"
@@ -93,9 +111,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/inter_regular"
         android:includeFontPadding="false"
         android:text="@string/volume"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_sound" />
@@ -120,11 +139,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/inter_semibold"
         android:includeFontPadding="false"
         android:text="@string/duration"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_volume" />
 

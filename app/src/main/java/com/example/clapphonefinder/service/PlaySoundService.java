@@ -70,10 +70,10 @@ public class PlaySoundService extends Service {
         if (intent != null && intent.getExtras() != null) {
             String action = intent.getStringExtra("action");
 
-            int sound = intent.getIntExtra("sound", 0);
+            int sound = intent.getIntExtra("sound", R.raw.clap_sound);
             if (action != null && sound != 0) {
                 if (action.equals("play")) {
-                    mediaPlayer = MediaPlayer.create(PlaySoundService.this, R.raw.clap_sound);
+                    mediaPlayer = MediaPlayer.create(PlaySoundService.this, sound);
                     playStart();
                 } else {
 

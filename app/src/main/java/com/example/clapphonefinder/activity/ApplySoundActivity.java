@@ -88,7 +88,7 @@ public class ApplySoundActivity extends AppCompatActivity {
             }
         });
 
-        applySoundBinding.toolbar.setTitle(soundModel.getName());
+        applySoundBinding.tvTitle.setText(soundModel.getName());
         initControls();
         applySoundBinding.ivPlay.setOnClickListener(view -> {
             Intent serviceIntent = new Intent(ApplySoundActivity.this, PlaySoundService.class);

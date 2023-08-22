@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="Base.Theme.ClapPhoneFinder" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:navigationBarColor">@android:color/transparent</item>
@@ -22,7 +22,8 @@
         <!-- Chip background color selector -->
         <item name="chipBackgroundColor">@color/chip_color_selector</item>
         <!-- Border color -->
-        <item name="chipStrokeColor">@color/black</item>
+        <item name="chipStrokeColor">@color/appcolor</item>
+        <item name="chipStrokeWidth">1dp</item>
 
         <!-- Chip text color selector -->
         <item name="android:textColor">@color/chip_text_color_selector</item>
