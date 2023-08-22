@@ -35,6 +35,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/risingBanner"
         android:layout_below="@id/toolbar">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -283,4 +284,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
+
+    <com.app.sdkads.view.RisingBannerView
+        android:id="@+id/risingBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

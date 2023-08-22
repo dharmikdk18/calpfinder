@@ -62,6 +62,11 @@ public class LanguageActivity extends AppCompatActivity {
             @Override
             public void onClick(int position) {
                 languageCode = languageList.get(position).getLanguageCode();
+                LocaleHelper.setLocale(LanguageActivity.this, languageCode);
+                Intent intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finishAffinity();
             }
         });
 

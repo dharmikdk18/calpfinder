@@ -47,4 +47,13 @@
     <string name="indonesia">Indonesia</string>
     <string name="german">German</string>
     <string name="korean">Korean</string>
+
+    <string name="onboarding1">Discover Devices with Ease</string>
+    <string name="onboarding2">Device Detect: Unveil the Unseen</string>
+    <string name="onboarding3">Echoes of Connectivity</string>
+
+    <string name="onboarding_description_1">Welcome to Device Finder Pro – Your Ultimate Device Discovery Solution!</string>
+    <string name="onboarding_description_2">Introducing Device Detect – Redefining How You Discover Devices!</string>
+    <string name="onboarding_description_3">Where Connectivity Echoes Louder and Clearer!</string>
+
 </resources>

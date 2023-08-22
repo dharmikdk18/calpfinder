@@ -51,6 +51,11 @@ public class PreferenceManager {
         editor.apply();
     }
 
+    public static void setIsFirstTime(boolean value){
+        editor.putBoolean("isFirst",value);
+        editor.apply();
+    }
+
     public static boolean getFirstTime(){
         return preferences.getBoolean("first_time", true);
     }
@@ -81,6 +86,10 @@ public class PreferenceManager {
 
     public static String getLanguageCode(){
         return preferences.getString("language_code", "en");
+    }
+
+    public static boolean isFirstTime(){
+        return preferences.getBoolean("isFirst", true);
     }
 
 }

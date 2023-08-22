@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -24,26 +25,36 @@ import com.app.sdkads.Ads;
 import com.app.sdkads.App;
 import com.example.clapphonefinder.R;
 import com.example.clapphonefinder.databinding.ActivitySplashBinding;
+import com.example.clapphonefinder.databinding.PermissionDialog2Binding;
 import com.example.clapphonefinder.databinding.PermissionDialogBinding;
 import com.example.clapphonefinder.utils.LocaleHelper;
 import com.example.clapphonefinder.utils.PermissionUtils;
+import com.example.clapphonefinder.utils.PreferenceManager;
 
 public class SplashActivity extends AppCompatActivity {
     private PermissionUtils permissionUtils;
-    private Context context;
-    private boolean isNotificationPermission = false, isCameraPermission = false, isMicrophonePermission = false, isMusicAndAudioPermission = false, isPhotosAndVideosPermission = false, isOverlayPermission = false;
-    private int progressStatus = 0;
+    private Context context;private int progressStatus = 0;
     private Handler handler = new Handler();
     ActivitySplashBinding binding;
     PermissionDialogBinding permissionDialogBinding;
+    PermissionDialog2Binding permissionDialog2Binding;
+    AlertDialog dialog;
 
     private String[] permissions = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    };
+
+    private String[] permissions33 = {
             Manifest.permission.POST_NOTIFICATIONS,
             Manifest.permission.CAMERA,
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.READ_MEDIA_AUDIO,
             Manifest.permission.READ_MEDIA_IMAGES
     };
+
+    private String[] ps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +68,11 @@ public class SplashActivity extends AppCompatActivity {
         context = this;
         permissionUtils = new PermissionUtils(context);
 
-        isNotificationPermission = permissionUtils.isNotificationPermission();
-        isCameraPermission = permissionUtils.isCameraPermission();
-        isMicrophonePermission = permissionUtils.isMicrophonePermission();
-        isMusicAndAudioPermission = permissionUtils.isMusicAndAudioPermission();
-        isPhotosAndVideosPermission = permissionUtils.isPhotosAndVideosPermission();
-        isOverlayPermission = permissionUtils.isOverlayPermission();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            ps = permissions33;
+        } else {
+            ps = permissions;
+        }
 
         Ads.Init(SplashActivity.this, new Ads.InitListner() {
             @Override
@@ -80,7 +90,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private boolean checkPermission() {
         boolean status = false;
-        for (String permission : permissions) {
+        for (String permission : ps) {
             if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
                 status = false;
                 break;
@@ -93,6 +103,14 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void showPermissionDialog() {
+        for (String permission : ps){
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                if (shouldShowRequestPermissionRationale(permission)) {
+                    showPermissionSecondDialog(permission);
+                    return;
+                }
+            }
+        }
         if (!checkPermission()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(false);
@@ -100,7 +118,8 @@ public class SplashActivity extends AppCompatActivity {
             permissionDialogBinding = PermissionDialogBinding.inflate(getLayoutInflater());
             builder.setView(permissionDialogBinding.getRoot());
 
-            AlertDialog dialog = builder.create();
+
+            dialog = builder.create();
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
 
@@ -114,16 +133,82 @@ public class SplashActivity extends AppCompatActivity {
             });
         } else {
             if (!Settings.canDrawOverlays(context)) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
-                startActivityForResult(intent, 200);
+                showPermissionSecondDialog("");
             } else {
                 nextScreen();
             }
         }
     }
 
+    private void showPermissionSecondDialog(String permission){
+        int icon = R.drawable.ic_notification_p;
+        String title = "";
+        String message = "";
+        if (permission.equalsIgnoreCase(Manifest.permission.POST_NOTIFICATIONS)){
+            title = "Notifications";
+            message = "Enable notifications so you don’t miss another augmented reality experiences near you";
+            icon = R.drawable.ic_notification_p;
+        } else if (permission.equalsIgnoreCase(Manifest.permission.CAMERA)){
+            title = "Camera";
+            message = "Please provide us access to your camera, which is required for Augmented Reality";
+            icon = R.drawable.ic_camera_p;
+        } else if (permission.equalsIgnoreCase(Manifest.permission.RECORD_AUDIO)){
+            title = "Microphone";
+            message = "Grant microphone permission for enhanced Augmented Reality.";
+            icon = R.drawable.ic_mircophone;
+        } else if (permission.equalsIgnoreCase(Manifest.permission.READ_MEDIA_AUDIO)){
+            title = "Music and Audio";
+            message = "Enable microphone access to enhance music and audio in AR.";
+            icon = R.drawable.ic_music_p;
+        } else if (permission.equalsIgnoreCase(Manifest.permission.READ_MEDIA_IMAGES)){
+            title = "Photo and Video";
+            message = "Grant microphone access for enhanced photo and video AR.";
+            icon = R.drawable.ic_photo_p ;
+        } else if (!Settings.canDrawOverlays(context)){
+            title = "Display over other apps";
+            message = "Authorize display over apps for crucial alerts.";
+            icon = R.drawable.ic_device_p;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+
+        permissionDialog2Binding = PermissionDialog2Binding.inflate(getLayoutInflater());
+        builder.setView(permissionDialog2Binding.getRoot());
+        permissionDialog2Binding.tvTitle.setText(title);
+        permissionDialog2Binding.tvMessage.setText(message);
+        permissionDialog2Binding.ivIcon.setImageResource(icon);
+
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+        permissionDialog2Binding.btnDeny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+
+        permissionDialog2Binding.btnAllow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                if (Settings.canDrawOverlays(context)) {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                    intent.setData(uri);
+                    startActivityForResult(intent, 300);
+                } else {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
+                    startActivityForResult(intent, 300);
+                }
+            }
+        });
+    }
+
     private void requestPermission() {
-        requestPermissions(permissions, 100);
+        requestPermissions(ps, 100);
     }
 
     @Override
@@ -131,6 +216,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 200) {
             nextScreen();
+        } else if (requestCode == 300){
+            showPermissionDialog();
         }
     }
 
@@ -139,7 +226,6 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 while (progressStatus < 100) {
                     progressStatus += 1;
-
                     // Update the progress bar on the main thread
                     handler.post(new Runnable() {
                         public void run() {
@@ -156,11 +242,11 @@ public class SplashActivity extends AppCompatActivity {
                     }
 
                     if (progressStatus == 100) {
-                        if (isNotificationPermission && isCameraPermission && isMicrophonePermission && isMusicAndAudioPermission && isPhotosAndVideosPermission && isOverlayPermission) {
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        if (PreferenceManager.isFirstTime()){
+                            startActivity(new Intent(getApplicationContext(), IntroActivity.class));
                             finish();
                         } else {
-                            startActivity(new Intent(getApplicationContext(), PermissionActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         }
 
@@ -180,6 +266,7 @@ public class SplashActivity extends AppCompatActivity {
                 } else {
 
                 }
+
                 showPermissionDialog();
                 permissionDialogBinding.btnApply.setEnabled(true);
                 break;

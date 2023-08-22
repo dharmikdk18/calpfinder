@@ -58,8 +58,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_setting) {
-                    Intent intent = new Intent(activity, SettingActivity.class);
-                    startActivity(intent);
+                    Interstitial_Google.showInterstitial(MainActivity.this, new Interstitial_Google.OnclickInter() {
+                        @Override
+                        public void clicked() {
+                            Intent intent = new Intent(activity, SettingActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+
                     return true;
                 }
                 return false;

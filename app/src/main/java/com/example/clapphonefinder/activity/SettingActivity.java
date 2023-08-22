@@ -158,4 +158,14 @@ public class SettingActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Interstitial_Google.showBackInterstitial(SettingActivity.this, new Interstitial_Google.OnclickInter() {
+            @Override
+            public void clicked() {
+                finish();
+            }
+        });
+    }
 }

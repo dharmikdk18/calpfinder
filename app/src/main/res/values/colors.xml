@@ -8,4 +8,7 @@
     <color name="color_orange">#ff8b20</color>
     <color name="appcolor">#0081F8</color>
     <color name="text_color">#495056</color>
+    <color name="grey3">#E1E1E1</color>
+    <color name="orange">#FCA80D</color>
+    <color name="grey2">#777777</color>
 </resources>
